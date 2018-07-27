@@ -1,65 +1,84 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TechDevelopsConwaysGameOfLife
 {
     class Game
     {
-        
+
         public Game()
         {
             var grid = new Grid();
         }
-    }
 
-    class Grid
-    {
-        private readonly int height = 2;
-        private readonly int width = 2;
 
-        public Grid()
+        class Grid
         {
-            var seed = new Seed(height, width);
+            public readonly int height = 2;
+            public readonly int width = 2;
+            private Cell[,] grid;
+
+            public Grid()
+            {
+                grid = new Cell[height, width];
+                var seed = new Seed(height, width);
+            }
         }
-    }
 
-    class Seed
-    {
-        public Seed(int height, int width)
+        class Seed
         {
-            
+            private int height;
+            private int width;
+
+            public Seed(int height, int width)
+            {
+                this.height = height;
+                this.width = width;
+                CreateSeed();
+            }
+
+            private void CreateSeed()
+            {     
+                Random seedCoordinates = new Random();
+                for(int y = 0; y < height; y++)
+                {
+                    for (int x = 0; x < width; x++)
+                    {
+                       Console.WriteLine("Cell coordinates: {0}, {1}", y, x);
+
+                    }
+                }
+
+
+            }
         }
-    }
 
-    class Cell
-    {
-    }
-
-    class Alive : Cell
-    {
-    }
-
-    class Dead : Cell
-    {
-    }
-
-    class DeadNeighbour : Dead
-    {
-    }
-
-    class AliveNeighbour : Alive
-    {
-    }
-
-
-    class Program
-    {
-        static void Main(string[] args)
+        class Cell
         {
+        }
 
+        class Alive : Cell
+        {
+        }
+
+        class Dead : Cell
+        {
+        }
+
+        class DeadNeighbour : Dead
+        {
+        }
+
+        class AliveNeighbour : Alive
+        {
+        }
+
+
+        class Program
+        {
+            static void Main(string[] args)
+            {
+                var myGame = new Game();
+            }
         }
     }
 }
